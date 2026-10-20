@@ -186,9 +186,13 @@ p { margin: 0; color: var(--ink-soft); }
 .faq details a, .faq__more a { color: var(--red); font-weight: 700; }
 .faq__more { grid-column: 2; margin-top: -24px; }
 
-.footer { display: flex; align-items: center; gap: 14px; padding: 28px var(--gutter); background: var(--ink); color: var(--cream); font-size: .9rem; }
-.footer p { color: rgba(255,248,225,.85); }
-.footer img { border-radius: 50%; }
+.footer { background: var(--red-deep); color: var(--white); }
+.footer__main { padding: clamp(64px, 10vw, 140px) var(--gutter) clamp(48px, 7vw, 96px); }
+.footer__main h2 { font-size: clamp(2.6rem, 6vw, 5.2rem); line-height: .95; letter-spacing: -.03em; max-width: 18ch; }
+.footer p { color: rgba(255,248,225,.88); }
+.footer__bar { display: flex; align-items: center; gap: 14px; padding: 24px var(--gutter); background: var(--ink); color: var(--cream); font-size: .9rem; }
+.footer__bar p { color: rgba(255,248,225,.85); }
+.footer__bar img { border-radius: 50%; }
 
 .fab { display: none; position: fixed; right: 16px; bottom: 16px; z-index: 60; background: var(--yellow); color: var(--ink); font-weight: 800; text-decoration: none; padding: 14px 22px; min-height: 48px; border-radius: 999px; box-shadow: 0 8px 22px rgba(0,0,0,.3); border: 2px solid var(--ink); }
 
@@ -227,7 +231,7 @@ p { margin: 0; color: var(--ink-soft); }
   .faq__more { grid-column: 1; margin-top: 0; }
   .faq details p { padding-right: 0; }
   .fab { display: inline-flex; align-items: center; }
-  .footer { padding-bottom: 88px; }
+  .footer__bar { padding-bottom: 88px; }
 }
 @media (max-width: 480px) {
   .hero__actions .btn { flex: 1 1 100%; }
