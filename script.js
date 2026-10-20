@@ -27,17 +27,17 @@ document.addEventListener("keydown", (e) => {
 document.getElementById("year").textContent = new Date().getFullYear();
 
 /* ---------- Catálogo ----------
-   Modelos de EXEMPLO. Troque por produtos reais: nome, categoria, cores e,
-   quando houver, `price` (ex.: "R$ 129") e `img` (caminho da foto). */
+   Armações (cat "grau") são de EXEMPLO: troque por produtos reais com nome, cores e,
+   quando houver, `price` (ex.: "R$ 129") e `img` (caminho da foto).
+   Lentes (cat "lentes") seguem o catálogo da loja. */
 const PRODUCTS = [
-  { name: "nara",   cat: "sol",      shape: "cat",   badge: "novo",   colors: ["#5A2E1B", "#B5532F", "#2A1020"] },
-  { name: "lola",   cat: "sol",      shape: "wing",  badge: "novo",   colors: ["#A32A22", "#2F4A2B", "#7FB5A5"] },
-  { name: "bento",  cat: "grau",     shape: "rect",  colors: ["#1E1512", "#44546A", "#8A6A4A"] },
-  { name: "maya",   cat: "grau",     shape: "round", colors: ["#C98A2B", "#1E1512", "#B9B9B9"] },
-  { name: "theo",   cat: "infantil", shape: "round", badge: "infantil", colors: ["#2D6FD0", "#D02D26", "#2F9E5B"] },
-  { name: "luna",   cat: "infantil", shape: "cat",   colors: ["#E86AA6", "#7A5CD0", "#FFB300"] },
-  { name: "rio",    cat: "sol",      shape: "rect",  colors: ["#1E1512", "#3B6EA8", "#6B7A3A"] },
-  { name: "vera",   cat: "grau",     shape: "wing",  colors: ["#8F1712", "#1E1512", "#C9B38A"] },
+  { name: "bento", cat: "grau", shape: "rect",  colors: ["#1E1512", "#44546A", "#8A6A4A"] },
+  { name: "maya",  cat: "grau", shape: "round", colors: ["#C98A2B", "#1E1512", "#B9B9B9"] },
+  { name: "vera",  cat: "grau", shape: "wing",  colors: ["#8F1712", "#1E1512", "#C9B38A"] },
+  { name: "Smart",  cat: "lentes", shape: "lens", sub: "Lente multifocal Haytek", full: "Lente Multifocal Haytek Smart",  badge: "Haytek", colors: [] },
+  { name: "Pro ID", cat: "lentes", shape: "lens", sub: "Lente multifocal Haytek", full: "Lente Multifocal Haytek Pro ID", badge: "Haytek", colors: [] },
+  { name: "Top",    cat: "lentes", shape: "lens", sub: "Lente multifocal Haytek", full: "Lente Multifocal Haytek Top",    badge: "Haytek", colors: [] },
+  { name: "Light",  cat: "lentes", shape: "lens", sub: "Lente multifocal Haytek", full: "Lente Multifocal Haytek Light",  badge: "Haytek", colors: [] },
 ];
 
 const SHAPES = {
@@ -47,7 +47,12 @@ const SHAPES = {
   wing:  { l: '<path d="M18 36 Q60 24 96 40 Q96 70 66 70 Q26 70 18 36Z"/>', r: '<path d="M202 36 Q160 24 124 40 Q124 70 154 70 Q194 70 202 36Z"/>', bridge: "M96 42 Q110 34 124 42" },
 };
 
+function lensSVG(label) {
+  return `<svg viewBox="0 0 220 100" role="img" aria-label="${label}"><defs><linearGradient id="lg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#D9ECFA"/><stop offset="1" stop-color="#8FC0E8"/></linearGradient></defs><ellipse cx="110" cy="50" rx="60" ry="44" fill="url(#lg)" stroke="#2D6FD0" stroke-width="4"/><path d="M92 18 Q110 14 128 18 L122 54 Q110 82 98 54 Z" fill="#fff" fill-opacity=".45"/><path d="M70 30 Q82 14 104 10" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".8"/></svg>`;
+}
+
 function frameSVG(shape, color, label) {
+  if (shape === "lens") return lensSVG(label);
   const s = SHAPES[shape];
   return `<svg viewBox="0 0 220 100" role="img" aria-label="${label}" fill="rgba(120,150,170,.28)" stroke="${color}" stroke-width="9" stroke-linejoin="round" stroke-linecap="round">${s.l}${s.r}<path d="${s.bridge}" fill="none"/><path d="M12 38 L4 30 M208 38 L216 30" fill="none"/></svg>`;
 }
@@ -69,17 +74,18 @@ function render() {
   list.innerHTML = items.map((p) => `
     <li class="product" data-name="${p.name}">
       <div class="product__media">
-        ${p.img ? `<img src="${p.img}" alt="Armação ${p.name}">` : frameSVG(p.shape, p.colors[0], `Armação ${p.name} (ilustração)`)}
+        ${p.img ? `<img src="${p.img}" alt="${p.full || "Armação " + p.name}">` : frameSVG(p.shape, p.colors[0], `${p.full || "Armação " + p.name} (ilustração)`)}
         ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
         <button type="button" class="fav" aria-pressed="${favs.has(p.name)}" aria-label="Favoritar ${p.name}">${HEART}</button>
-        <a class="add" data-model="${p.name}" href="#loja" aria-label="Perguntar sobre ${p.name} no WhatsApp">+</a>
+        <a class="add" data-model="${p.full || p.name}" href="#loja" aria-label="Perguntar sobre ${p.full || p.name} no WhatsApp">+</a>
       </div>
       <div class="product__row"><h3 class="product__name">${p.name}</h3><span class="product__price">${p.price || "consulte o valor"}</span></div>
-      <div class="swatches" role="group" aria-label="Cores de ${p.name}">
+      ${p.sub ? `<p class="product__sub">${p.sub}</p>` : ""}
+      ${p.colors.length ? `<div class="swatches" role="group" aria-label="Cores de ${p.name}">
         ${p.colors.map((c, i) => `<button type="button" class="swatch" style="background:${c}" data-color="${c}" aria-pressed="${i === 0}" aria-label="Cor ${i + 1}"></button>`).join("")}
-      </div>
+      </div>` : ""}
     </li>`).join("");
-  list.querySelectorAll(".add").forEach((a) => setWhatsApp(a, `Olá! Tenho interesse no modelo "${a.dataset.model}" que vi no site da Óticas Popular Santos.`));
+  list.querySelectorAll(".add").forEach((a) => setWhatsApp(a, `Olá! Tenho interesse em "${a.dataset.model}" que vi no site da Óticas Popular Santos.`));
   emptyEl.hidden = items.length > 0;
   countEl.textContent = items.length ? `${items.length} ${items.length === 1 ? "modelo" : "modelos"}` : "";
 }

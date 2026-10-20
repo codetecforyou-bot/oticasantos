@@ -110,7 +110,8 @@ p { margin: 0; }
 .add { position: absolute; right: 10px; bottom: 10px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--white); text-decoration: none; font-size: 1.6rem; line-height: 1; }
 .add:hover { background: var(--red); }
 .product__row { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin-top: 12px; }
-.product__name { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; text-transform: lowercase; }
+.product__name { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; }
+.product__sub { font-size: .85rem; opacity: .7; margin-top: 2px; }
 .product__price { font-size: .85rem; opacity: .7; white-space: nowrap; }
 .swatches { display: flex; gap: 8px; margin-top: 8px; }
 .swatch { width: 28px; height: 28px; border-radius: 6px; border: 2px solid transparent; outline: 1px solid rgba(30,21,18,.25); outline-offset: -3px; cursor: pointer; padding: 0; position: relative; }
