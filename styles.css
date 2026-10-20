@@ -55,11 +55,11 @@ p { margin: 0; }
 .hero__lead { max-width: 34ch; margin-top: 24px; font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--cream); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .hero__art { position: relative; display: grid; place-items: center; }
-.glasses { width: min(112%, 700px); rotate: -7deg; filter: drop-shadow(0 28px 30px rgba(80,5,0,.35)); animation: float 6s ease-in-out infinite; }
-.clock-badge { position: absolute; right: 4%; bottom: -2%; width: clamp(84px, 13vw, 132px); aspect-ratio: 1; border-radius: 50%; background: var(--yellow); color: var(--red); display: grid; place-content: center; text-align: center; font-family: var(--font-display); rotate: 10deg; box-shadow: 0 10px 24px rgba(80,5,0,.3); z-index: 2; }
+.hero__photo { width: min(100%, 440px); height: auto; max-height: 62vh; aspect-ratio: 4/5; object-fit: cover; object-position: 50% 45%; border-radius: 28px; rotate: 3deg; box-shadow: 0 30px 60px rgba(80,5,0,.4); border: 6px solid var(--cream); }
+.hero__art { justify-items: center; }
+.clock-badge { position: absolute; right: 6%; bottom: -3%; width: clamp(84px, 13vw, 132px); aspect-ratio: 1; border-radius: 50%; background: var(--yellow); color: var(--red); display: grid; place-content: center; text-align: center; font-family: var(--font-display); rotate: 10deg; box-shadow: 0 10px 24px rgba(80,5,0,.3); z-index: 2; }
 .clock-badge span { font-weight: 800; font-size: clamp(2.2rem, 5vw, 4rem); line-height: .85; }
 .clock-badge small { font-weight: 800; font-size: clamp(.7rem, 1.4vw, 1rem); letter-spacing: .12em; }
-@keyframes float { 50% { translate: 0 -14px; rotate: -5deg; } }
 
 /* Marquee */
 .marquee { background: var(--yellow); color: var(--red); overflow: hidden; border-block: 4px solid var(--ink); }
@@ -132,7 +132,7 @@ p { margin: 0; }
 
   .hero { grid-template-columns: 1fr; padding-bottom: 56px; }
   .hero__art { order: -1; margin-bottom: 8px; }
-  .glasses { width: min(100%, 420px); }
+  .hero__photo { width: min(100%, 360px); aspect-ratio: 1; }
   .hero::before { width: 120vw; height: 120vw; right: -40vw; top: 18%; }
   .steps { grid-template-columns: 1fr 1fr; }
   .products { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
@@ -147,7 +147,7 @@ p { margin: 0; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .glasses, .marquee__track { animation: none; }
+  .marquee__track { animation: none; }
   .product__media svg { transition: none; }
   .btn { transition: none; }
 }
