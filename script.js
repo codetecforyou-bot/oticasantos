@@ -1,6 +1,5 @@
-// TODO: preencher com o número real, só dígitos com DDI+DDD (ex.: "5511999999999").
-// Enquanto estiver vazio, os botões de WhatsApp levam à seção "A loja".
-const WHATSAPP_NUMBER = "";
+// Só dígitos, com DDI+DDD. Se ficar vazio, os botões levam à seção "A loja".
+const WHATSAPP_NUMBER = "5551982800889";
 const WHATSAPP_MESSAGE = "Olá! Vim pelo site da Óticas Popular Santos e quero saber mais.";
 
 function setWhatsApp(a, message = WHATSAPP_MESSAGE) {

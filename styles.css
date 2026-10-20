@@ -112,7 +112,9 @@ p { margin: 0; }
 .visit__info { margin: 0; display: grid; gap: 20px; }
 .visit__info dt { font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--yellow); font-weight: 700; }
 .visit__info dd { margin: 4px 0 0; font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 500; }
-.visit__cta p { margin-top: 14px; color: var(--cream); }
+.visit__info a.tel { color: inherit; text-decoration-color: var(--yellow); text-underline-offset: 4px; }
+.visit__cta { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.visit__cta p { margin-top: 2px; color: var(--cream); }
 
 .footer { display: flex; align-items: center; gap: 14px; padding: 28px var(--gutter); background: var(--ink); color: var(--cream); font-size: .9rem; }
 .footer img { border-radius: 50%; }
