@@ -49,7 +49,7 @@ p { margin: 0; }
 .hero { position: relative; overflow: hidden; background: var(--red); color: var(--white); display: grid; grid-template-columns: 1fr 58%; min-height: min(72vh, 660px); isolation: isolate; }
 .hero__media { position: relative; grid-column: 2; grid-row: 1; min-height: 100%; }
 .hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
-.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, var(--red) 0, rgba(208,45,38,0) 28%); }
+.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, var(--red) 0, rgba(208,45,38,.55) 7%, rgba(208,45,38,0) 17%); }
 .hero__copy { grid-column: 1; grid-row: 1; align-self: center; padding: clamp(40px, 6vw, 88px) 0 clamp(40px, 6vw, 88px) var(--gutter); z-index: 1; margin-right: -10%; }
 .eyebrow { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; color: var(--yellow); margin-bottom: 18px; }
 .eyebrow--red { color: var(--red); }
@@ -57,9 +57,9 @@ p { margin: 0; }
 .hero__hour { color: var(--yellow); display: inline-block; }
 .hero__lead { max-width: 34ch; margin-top: 24px; font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--cream); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
-.clock-badge { position: absolute; right: 8%; bottom: 8%; z-index: 2; width: clamp(84px, 12vw, 132px); aspect-ratio: 1; border-radius: 50%; background: var(--yellow); color: var(--red); display: grid; place-content: center; text-align: center; font-family: var(--font-display); rotate: 10deg; box-shadow: 0 10px 24px rgba(80,5,0,.3); }
-.clock-badge span { font-weight: 800; font-size: clamp(2.2rem, 5vw, 4rem); line-height: .85; }
-.clock-badge small { font-weight: 800; font-size: clamp(.7rem, 1.4vw, 1rem); letter-spacing: .12em; }
+.clock-badge { display: inline-grid; place-content: center; width: 1.05em; aspect-ratio: 1; margin-left: .2em; vertical-align: middle; translate: 0 -.04em; border-radius: 50%; background: var(--yellow); color: var(--red); text-align: center; font-family: var(--font-display); rotate: 10deg; box-shadow: 0 10px 24px rgba(80,5,0,.3); }
+.clock-badge span { font-weight: 800; font-size: .6em; line-height: .85; }
+.clock-badge small { font-weight: 800; font-size: .17em; letter-spacing: .12em; line-height: 1.2; }
 
 /* Marquee */
 .marquee { background: var(--yellow); color: var(--red); overflow: hidden; border-block: 4px solid var(--ink); }
@@ -134,9 +134,8 @@ p { margin: 0; }
 
   .hero { grid-template-columns: 1fr; min-height: 0; }
   .hero__media { grid-column: 1; grid-row: 1; aspect-ratio: 3 / 2; min-height: 0; }
-  .hero__media::after { display: none; }
-  .clock-badge { right: 12px; top: 12px; bottom: auto; width: 72px; }
-  .hero__copy { grid-column: 1; grid-row: 2; align-self: start; margin: 0; padding: 32px var(--gutter) 56px; }
+  .hero__media::after { background: linear-gradient(to top, var(--red) 0, rgba(208,45,38,.6) 3%, rgba(208,45,38,0) 8%); }
+  .hero__copy { grid-column: 1; grid-row: 2; align-self: start; margin: 0; padding: 22px var(--gutter) 56px; }
   .steps { grid-template-columns: 1fr 1fr; }
   .products { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
   .visit { grid-template-columns: 1fr; }
