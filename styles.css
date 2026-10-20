@@ -62,9 +62,9 @@ p { margin: 0; }
 .clock-badge small { font-weight: 800; font-size: .17em; letter-spacing: .12em; line-height: 1.2; }
 
 /* Marcas */
-.brands { background: var(--cream); padding: 28px var(--gutter); display: flex; align-items: center; gap: 12px 40px; }
+.brands { background: var(--cream); padding: 28px var(--gutter); display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .brands__label { flex: none; font-size: .8rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red); }
-.brands__list { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 32px; }
+.brands__list { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 28px; }
 .brands__list li { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.15rem, 2.4vw, 1.7rem); letter-spacing: -.01em; white-space: nowrap; }
 .brands__list small { font-weight: 500; font-size: .6em; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
 
@@ -143,8 +143,8 @@ p { margin: 0; }
   .hero__media { grid-column: 1; grid-row: 1; aspect-ratio: 3 / 2; min-height: 0; }
   .hero__media::after { background: linear-gradient(to top, var(--red) 0, rgba(208,45,38,.6) 3%, rgba(208,45,38,0) 8%); }
   .hero__copy { grid-column: 1; grid-row: 2; align-self: start; margin: 0; padding: 22px var(--gutter) 56px; }
-  .brands { flex-direction: column; align-items: flex-start; padding-block: 24px; }
-  .brands__list { justify-content: flex-start; gap: 6px 24px; }
+  .brands { padding-block: 24px; }
+  .brands__list { justify-content: flex-start; gap: 6px 22px; }
   .steps { grid-template-columns: 1fr 1fr; }
   .products { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
   .visit { grid-template-columns: 1fr; }
