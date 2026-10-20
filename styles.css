@@ -112,6 +112,31 @@ p { margin: 0; color: var(--ink-soft); }
 .step--d .step__n { font-size: clamp(5rem, 11vw, 9rem); color: var(--yellow); }
 .step--d p { color: rgba(255,248,225,.85); }
 
+/* Avaliações */
+.section--ink { background: var(--ink); color: var(--cream); }
+.section--ink :focus-visible { outline-color: var(--yellow); }
+.reviews__head h2 { color: var(--cream); margin-top: 16px; }
+.reviews__head p { margin-top: 20px; color: rgba(255,248,225,.85); }
+.stars { display: flex; gap: 4px; color: var(--yellow); }
+.reviews__grid { list-style: none; margin: 0 0 36px; padding: 0; display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; }
+.review { border-radius: var(--radius); padding: clamp(24px, 3.4vw, 44px); display: flex; }
+.review figure { margin: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; width: 100%; }
+.review blockquote { margin: 0; }
+.review figcaption { display: flex; align-items: center; gap: 14px; font-size: .95rem; line-height: 1.3; }
+.review figcaption img { flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
+.review figcaption strong { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; letter-spacing: -.01em; }
+.review--a { grid-column: span 7; grid-row: span 2; background: var(--cream); }
+.review--a p { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.3rem, 2.5vw, 2rem); line-height: 1.25; letter-spacing: -.015em; color: var(--ink); }
+.review--a figcaption { color: var(--ink-soft); }
+.review--a figcaption strong { color: var(--ink); }
+.review--b { grid-column: span 5; background: var(--yellow); }
+.review--c { grid-column: span 5; background: var(--red); }
+.review--b p, .review--c p { font-size: 1.15rem; line-height: 1.45; }
+.review--b p { color: var(--ink); }
+.review--b figcaption { color: var(--ink-soft); }
+.review--c p, .review--c figcaption { color: rgba(255,255,255,.92); }
+.review--c figcaption strong { color: var(--white); }
+
 /* Serviços: grade de cards de tamanhos variados */
 .services__note { margin: 28px 0 20px; font-weight: 600; color: var(--ink); }
 .services { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: minmax(150px, auto); gap: 16px; }
@@ -222,7 +247,8 @@ p { margin: 0; color: var(--ink-soft); }
   .brands { grid-template-columns: 1fr; }
   .brands__title { max-width: none; }
   .brands__list { gap: 6px 22px; }
-  .steps, .services { grid-template-columns: 1fr; }
+  .steps, .services, .reviews__grid { grid-template-columns: 1fr; }
+  .review--a, .review--b, .review--c { grid-column: auto; grid-row: auto; }
   .step--a, .step--b, .step--c, .step--d, .svc--a, .svc--b, .svc--c { grid-column: auto; grid-row: auto; min-height: 0; }
   .step--a, .step--d { min-height: 300px; }
   .svc--a { min-height: 260px; }
