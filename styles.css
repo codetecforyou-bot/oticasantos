@@ -136,6 +136,14 @@ p { margin: 0; }
 .services h3 { font-size: clamp(1.5rem, 3vw, 2.2rem); color: var(--red); }
 .section--yellow .btn { background: var(--ink); color: var(--white); }
 
+/* Ambiente */
+.ambiente { background: var(--cream); display: grid; grid-template-columns: minmax(0, 480px) 1fr; gap: clamp(32px, 7vw, 120px); align-items: center; padding: clamp(56px, 9vw, 120px) var(--gutter); }
+.ambiente__photo { margin: 0; border-radius: 28px; overflow: hidden; box-shadow: 0 24px 50px rgba(80,5,0,.25); border: 6px solid var(--white); }
+.ambiente__photo img { width: 100%; height: auto; display: block; }
+.ambiente h2 { font-weight: 800; font-size: clamp(2.2rem, 5.4vw, 4.4rem); }
+.ambiente .red { color: var(--red); }
+.ambiente__copy p:not(.eyebrow) { margin: 20px 0 28px; max-width: 36ch; font-size: clamp(1.05rem, 2vw, 1.3rem); }
+
 /* FAQ */
 .faq { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(24px, 5vw, 80px); align-items: start; }
 .faq .section__head { margin-bottom: 0; position: sticky; top: 100px; }
@@ -179,6 +187,9 @@ p { margin: 0; }
   .products { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
   .visit { grid-template-columns: 1fr; }
   .services { grid-template-columns: 1fr; }
+  .ambiente { grid-template-columns: 1fr; padding: 0 0 56px; gap: 28px; }
+  .ambiente__photo { border: 0; border-radius: 0; box-shadow: none; }
+  .ambiente__copy { padding-inline: var(--gutter); }
   .faq { grid-template-columns: 1fr; gap: 28px; }
   .faq .section__head { position: static; }
   .faq__more { grid-column: 1; margin-top: 0; }
