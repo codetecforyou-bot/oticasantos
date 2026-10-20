@@ -46,14 +46,14 @@ p { margin: 0; }
 .btn--big { min-height: 60px; font-size: 1.15rem; padding-inline: 36px; }
 
 /* Hero */
-.hero { position: relative; overflow: hidden; background: var(--red); color: var(--white); display: grid; grid-template-columns: 1fr 46%; min-height: min(86vh, 820px); isolation: isolate; }
+.hero { position: relative; overflow: hidden; background: var(--red); color: var(--white); display: grid; grid-template-columns: 1fr 58%; min-height: min(72vh, 660px); isolation: isolate; }
 .hero__media { position: relative; grid-column: 2; grid-row: 1; min-height: 100%; }
-.hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
-.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, var(--red) 0, rgba(208,45,38,0) 38%); }
-.hero__copy { grid-column: 1; grid-row: 1; align-self: center; padding: clamp(40px, 6vw, 88px) 0 clamp(40px, 6vw, 88px) var(--gutter); z-index: 1; margin-right: -12%; }
+.hero__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.hero__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, var(--red) 0, rgba(208,45,38,0) 28%); }
+.hero__copy { grid-column: 1; grid-row: 1; align-self: center; padding: clamp(40px, 6vw, 88px) 0 clamp(40px, 6vw, 88px) var(--gutter); z-index: 1; margin-right: -10%; }
 .eyebrow { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; color: var(--yellow); margin-bottom: 18px; }
 .eyebrow--red { color: var(--red); }
-.hero h1 { font-weight: 800; font-size: clamp(3.1rem, 8.4vw, 7.4rem); }
+.hero h1 { font-weight: 800; font-size: clamp(3.1rem, 5.8vw, 5.8rem); }
 .hero__hour { color: var(--yellow); display: inline-block; }
 .hero__lead { max-width: 34ch; margin-top: 24px; font-size: clamp(1.05rem, 2vw, 1.3rem); color: var(--cream); }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
@@ -133,11 +133,10 @@ p { margin: 0; }
   .brand img { width: 44px; height: 44px; }
 
   .hero { grid-template-columns: 1fr; min-height: 0; }
-  .hero__media { grid-column: 1; grid-row: 1; aspect-ratio: 9 / 14; min-height: 0; }
-  .hero__media::after { background: linear-gradient(to top, var(--red) 0, var(--red) 12%, rgba(208,45,38,.85) 24%, rgba(208,45,38,0) 42%); }
-  .hero__photo { object-position: 50% 30%; }
-  .clock-badge { right: 16px; top: 16px; bottom: auto; width: 84px; }
-  .hero__copy { grid-column: 1; grid-row: 2; align-self: start; margin: -84px 0 0; padding: 0 var(--gutter) 56px; }
+  .hero__media { grid-column: 1; grid-row: 1; aspect-ratio: 3 / 2; min-height: 0; }
+  .hero__media::after { display: none; }
+  .clock-badge { right: 12px; top: 12px; bottom: auto; width: 72px; }
+  .hero__copy { grid-column: 1; grid-row: 2; align-self: start; margin: 0; padding: 32px var(--gutter) 56px; }
   .steps { grid-template-columns: 1fr 1fr; }
   .products { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
   .visit { grid-template-columns: 1fr; }
