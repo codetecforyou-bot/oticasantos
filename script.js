@@ -26,6 +26,17 @@ document.addEventListener("keydown", (e) => {
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
+/* ---------- Entrada suave das imagens ---------- */
+const io = "IntersectionObserver" in window
+  ? new IntersectionObserver((entries) => entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("in-view"); io.unobserve(e.target); }
+    }), { threshold: 0.12, rootMargin: "0px 0px -6% 0px" })
+  : null;
+function observeReveals(root = document) {
+  root.querySelectorAll(".reveal:not(.in-view)").forEach((el) => (io ? io.observe(el) : el.classList.add("in-view")));
+}
+observeReveals();
+
 /* ---------- Catálogo ----------
    Armações (cat "grau") são de EXEMPLO: troque por produtos reais com nome, cores e,
    quando houver, `price` (ex.: "R$ 129") e `img` (caminho da foto).
@@ -71,9 +82,9 @@ let filter = "todos";
 
 function render() {
   const items = PRODUCTS.filter((p) => filter === "todos" || (filter === "fav" ? favs.has(p.name) : p.cat === filter));
-  list.innerHTML = items.map((p) => `
+  list.innerHTML = items.map((p, i) => `
     <li class="product" data-name="${p.name}">
-      <div class="product__media">
+      <div class="product__media reveal" style="--d:${(i % 4) * 90}ms">
         ${p.img ? `<img src="${p.img}" alt="${p.full || "Armação " + p.name}">` : frameSVG(p.shape, p.colors[0], `${p.full || "Armação " + p.name} (ilustração)`)}
         ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
         <button type="button" class="fav" aria-pressed="${favs.has(p.name)}" aria-label="Favoritar ${p.name}">${HEART}</button>
@@ -86,6 +97,7 @@ function render() {
       </div>` : ""}
     </li>`).join("");
   list.querySelectorAll(".add").forEach((a) => setWhatsApp(a, `Olá! Tenho interesse em "${a.dataset.model}" que vi no site da Óticas Popular Santos.`));
+  observeReveals(list);
   emptyEl.hidden = items.length > 0;
   countEl.textContent = items.length ? `${items.length} ${items.length === 1 ? "modelo" : "modelos"}` : "";
 }
