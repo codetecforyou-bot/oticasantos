@@ -218,7 +218,7 @@ p { margin: 0; color: var(--ink-soft); }
   .section h2, .ambiente h2, .footer__main h2 { font-size: clamp(2.3rem, 11vw, 3.6rem); }
   .clock-badge { width: 1.2em; }
   .clock-badge span { font-size: .56em; }
-  .clock-badge small { font-size: .3em; letter-spacing: .03em; }
+  .clock-badge small { font-size: max(14px, .3em); letter-spacing: .02em; }
   .brands { grid-template-columns: 1fr; }
   .brands__title { max-width: none; }
   .brands__list { gap: 6px 22px; }
