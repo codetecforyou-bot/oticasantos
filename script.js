@@ -2,9 +2,12 @@
 const WHATSAPP_NUMBER = "5551982800889";
 const WHATSAPP_MESSAGE = "Olá! Vim pelo site da Óticas Popular Santos e quero saber mais.";
 
+function waUrl(message = WHATSAPP_MESSAGE) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
 function setWhatsApp(a, message = WHATSAPP_MESSAGE) {
   if (!WHATSAPP_NUMBER) return;
-  a.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  a.href = waUrl(message);
   a.target = "_blank";
   a.rel = "noopener";
 }
@@ -148,3 +151,54 @@ list.addEventListener("click", (e) => {
 });
 
 render();
+
+/* ---------- Aberto agora ---------- */
+// Horário de funcionamento (0 = domingo). Feriados não são considerados.
+const HOURS = { 0: null, 1: [9, 19], 2: [9, 19], 3: [9, 19], 4: [9, 19], 5: [9, 19], 6: [9, 18] };
+const DAY_NAMES = ["domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado"];
+
+function storeStatus(now = new Date()) {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone: "America/Sao_Paulo", weekday: "short", hour: "2-digit", minute: "2-digit", hourCycle: "h23" })
+    .formatToParts(now).reduce((o, p) => ((o[p.type] = p.value), o), {});
+  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(parts.weekday);
+  const minutes = +parts.hour * 60 + +parts.minute;
+  const today = HOURS[day];
+  if (today && minutes >= today[0] * 60 && minutes < today[1] * 60) {
+    return { open: true, text: `Aberto agora, até ${today[1]}h` };
+  }
+  if (today && minutes < today[0] * 60) return { open: false, text: `Fechado agora. Abrimos hoje às ${today[0]}h` };
+  for (let i = 1; i <= 7; i++) {
+    const d = (day + i) % 7;
+    if (HOURS[d]) return { open: false, text: `Fechado agora. Abrimos ${i === 1 ? "amanhã" : DAY_NAMES[d]} às ${HOURS[d][0]}h` };
+  }
+  return null;
+}
+function updateStatus() {
+  const s = storeStatus();
+  document.querySelectorAll("[data-status]").forEach((el) => {
+    if (!s) { el.hidden = true; return; }
+    el.textContent = s.text;
+    el.classList.toggle("is-open", s.open);
+    el.hidden = false;
+  });
+}
+updateStatus();
+setInterval(updateStatus, 60000);
+
+/* ---------- Formulário rápido → WhatsApp ---------- */
+const quick = document.getElementById("quick-form");
+if (quick) {
+  const erro = document.getElementById("q-erro");
+  quick.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nome = quick.nome.value.trim();
+    const interesse = quick.interesse.value;
+    quick.interesse.setAttribute("aria-invalid", String(!interesse));
+    if (!interesse) { erro.textContent = "Escolha o que você precisa."; quick.interesse.focus(); return; }
+    erro.textContent = "";
+    const msg = `Olá! ${nome ? `Meu nome é ${nome}. ` : ""}Vim pelo site da Óticas Popular Santos e preciso de: ${interesse}.`;
+    if (!WHATSAPP_NUMBER) { erro.textContent = "WhatsApp indisponível no momento."; return; }
+    window.open(waUrl(msg), "_blank", "noopener");
+  });
+  quick.interesse.addEventListener("change", () => { erro.textContent = ""; quick.interesse.removeAttribute("aria-invalid"); });
+}

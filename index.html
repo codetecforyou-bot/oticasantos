@@ -49,6 +49,7 @@
       <div class="hero__copy">
         <h1>Seu óculos em <span class="hero__hour">1&nbsp;hora.</span><span class="clock-badge" aria-hidden="true"><span>1</span><small>HORA</small></span></h1>
         <p class="hero__lead">Você traz a receita, escolhe a armação e a gente monta na hora. Preço popular, sem espera de dias.</p>
+        <p class="status" data-status hidden></p>
         <p class="hero__promo">Parcele em <strong>até 10x sem juros</strong></p>
         <div class="hero__actions">
           <a class="btn btn--yellow" data-wa href="#loja">Falar no WhatsApp</a>
@@ -199,6 +200,30 @@
       </div>
       <p class="faq__more">Não achou sua dúvida? <a data-wa href="#loja">Fale com a gente no WhatsApp</a>.</p>
     </section>
+  <section class="section section--yellow contato" id="contato" data-hide-fab>
+      <header class="section__head">
+        <h2>Conte o que você precisa e a gente responde.</h2>
+        <p>Preencha em poucos segundos. A conversa abre no WhatsApp, e lá você pode mandar a foto da sua receita.</p>
+      </header>
+      <form class="quick" id="quick-form" novalidate>
+        <div class="field">
+          <label for="q-nome">Seu nome</label>
+          <input id="q-nome" name="nome" type="text" autocomplete="given-name" maxlength="60" placeholder="Como podemos te chamar?">
+        </div>
+        <div class="field">
+          <label for="q-interesse">O que você precisa?</label>
+          <select id="q-interesse" name="interesse" required>
+            <option value="">Escolha uma opção</option>
+            <option>Óculos de grau</option>
+            <option>Lentes</option>
+            <option>Ajustes ou conserto</option>
+            <option>Outra dúvida</option>
+          </select>
+        </div>
+        <p class="form__error" id="q-erro" role="alert"></p>
+        <button class="btn btn--big" type="submit">Enviar pelo WhatsApp</button>
+      </form>
+    </section>
   </main>
 
   <footer class="footer" id="loja" data-hide-fab>
@@ -208,7 +233,7 @@
       <div class="visit">
         <dl class="visit__info">
           <div><dt>Endereço</dt><dd>Av. Álvares Cabral, 608<br>Morada do Vale I, Gravataí, RS<br>CEP 94085-000</dd></div>
-          <div><dt>Horário</dt><dd>Segunda a sexta, 9h às 19h<br>Sábado, 9h às 18h</dd></div>
+          <div><dt>Horário</dt><dd>Segunda a sexta, 9h às 19h<br>Sábado, 9h às 18h</dd><p class="status" data-status hidden></p></div>
           <div><dt>WhatsApp</dt><dd><a class="tel" data-wa href="#loja">(51) 98280-0889</a></dd></div>
         </dl>
         <div class="visit__cta">
@@ -216,6 +241,9 @@
           <a class="btn btn--ghost btn--big" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Av.+%C3%81lvares+Cabral%2C+608+-+Morada+do+Vale+I%2C+Gravata%C3%AD+-+RS%2C+94085-000">Como chegar</a>
           <p>Mande sua dúvida ou sua receita e a gente responde.</p>
         </div>
+      </div>
+      <div class="map">
+        <iframe title="Mapa com a localização da Óticas Popular Santos" src="https://www.google.com/maps?q=Av.+%C3%81lvares+Cabral%2C+608%2C+Morada+do+Vale+I%2C+Gravata%C3%AD%2C+RS%2C+94085-000&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
       </div>
     </div>
     <div class="footer__bar">
