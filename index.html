@@ -89,12 +89,17 @@
         <p class="eyebrow eyebrow--red">Armações</p>
         <h2>Para cada rosto, uma armação.</h2>
       </header>
-      <ul class="cats">
-        <li class="cat"><div class="cat__img" role="img" aria-label="Espaço para foto de armações de grau"></div><h3>Óculos de grau</h3><a data-wa href="#loja">Ver modelos no WhatsApp</a></li>
-        <li class="cat"><div class="cat__img" role="img" aria-label="Espaço para foto de óculos de sol"></div><h3>Óculos de sol</h3><a data-wa href="#loja">Ver modelos no WhatsApp</a></li>
-        <li class="cat"><div class="cat__img" role="img" aria-label="Espaço para foto de armações infantis"></div><h3>Infantil</h3><a data-wa href="#loja">Ver modelos no WhatsApp</a></li>
-      </ul>
-      <p class="note">Fotos e modelos reais entram aqui quando forem enviados.</p>
+      <div class="filters" role="group" aria-label="Filtrar armações">
+        <button type="button" class="chip" data-filter="todos" aria-pressed="true">Todos</button>
+        <button type="button" class="chip" data-filter="grau" aria-pressed="false">Grau</button>
+        <button type="button" class="chip" data-filter="sol" aria-pressed="false">Sol</button>
+        <button type="button" class="chip" data-filter="infantil" aria-pressed="false">Infantil</button>
+        <button type="button" class="chip" data-filter="fav" aria-pressed="false">Favoritos</button>
+      </div>
+      <p class="count" id="count" role="status" aria-live="polite"></p>
+      <ul class="products" id="products"></ul>
+      <p class="empty" id="empty" hidden>Nenhum modelo nesta seleção. Chame no WhatsApp e a gente mostra o que tem na loja.</p>
+      <p class="note">Modelos de exemplo. Fotos, nomes e valores reais entram quando forem enviados.</p>
     </section>
 
     <section class="section section--red" id="loja">

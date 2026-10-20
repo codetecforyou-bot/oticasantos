@@ -81,12 +81,32 @@ p { margin: 0; }
 .steps__n { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--yellow); color: var(--red); font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; margin-bottom: 14px; }
 .steps h3 { font-size: 1.4rem; margin-bottom: 8px; }
 
-.cats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.cat h3 { font-size: 1.5rem; margin: 14px 0 6px; }
-.cat a { color: var(--red); font-weight: 700; }
-.cat__img { aspect-ratio: 4/5; border-radius: var(--radius); background:
-  repeating-linear-gradient(135deg, rgba(208,45,38,.08) 0 14px, transparent 14px 28px), var(--white);
-  border: 2px dashed rgba(208,45,38,.45); }
+.filters { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 14px; scrollbar-width: none; }
+.filters::-webkit-scrollbar { display: none; }
+.chip { flex: none; font: inherit; font-weight: 600; min-height: 44px; padding: 8px 20px; border-radius: 12px; border: 2px solid transparent; background: var(--white); color: var(--ink); cursor: pointer; }
+.chip:hover { border-color: var(--red); }
+.chip[aria-pressed="true"] { background: var(--red); color: var(--white); }
+.count { font-size: .9rem; opacity: .75; margin: 4px 0 18px; }
+
+.products { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px 20px; }
+.product__media { position: relative; aspect-ratio: 1; border-radius: 6px; background: #F4F3F1; display: grid; place-items: center; padding: 10%; }
+.product__media svg { width: 100%; height: auto; transition: transform .25s ease; }
+.product:hover .product__media svg { transform: scale(1.05) rotate(-2deg); }
+.badge { position: absolute; left: 10px; top: 10px; background: var(--white); border-radius: 999px; padding: 4px 14px; font-size: .85rem; }
+.fav { position: absolute; right: 6px; top: 6px; width: 44px; height: 44px; display: grid; place-items: center; border: 0; background: none; cursor: pointer; color: var(--ink); }
+.fav svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+.fav[aria-pressed="true"] { color: var(--red); }
+.fav[aria-pressed="true"] svg { fill: currentColor; }
+.add { position: absolute; right: 10px; bottom: 10px; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--ink); color: var(--white); text-decoration: none; font-size: 1.6rem; line-height: 1; }
+.add:hover { background: var(--red); }
+.product__row { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; margin-top: 12px; }
+.product__name { font-family: var(--font-display); font-weight: 500; font-size: 1.2rem; text-transform: lowercase; }
+.product__price { font-size: .85rem; opacity: .7; white-space: nowrap; }
+.swatches { display: flex; gap: 8px; margin-top: 8px; }
+.swatch { width: 28px; height: 28px; border-radius: 6px; border: 2px solid transparent; outline: 1px solid rgba(30,21,18,.25); outline-offset: -3px; cursor: pointer; padding: 0; position: relative; }
+.swatch::after { content: ""; position: absolute; inset: -9px; }
+.swatch[aria-pressed="true"] { border-color: var(--ink); outline-color: var(--white); }
+.empty { padding: 32px 0; font-weight: 600; }
 
 .visit { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
 .visit__info { margin: 0; display: grid; gap: 20px; }
@@ -115,8 +135,7 @@ p { margin: 0; }
   .glasses { width: min(100%, 420px); }
   .hero::before { width: 120vw; height: 120vw; right: -40vw; top: 18%; }
   .steps { grid-template-columns: 1fr 1fr; }
-  .cats { grid-template-columns: 1fr; }
-  .cat__img { aspect-ratio: 16/10; }
+  .products { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; }
   .visit { grid-template-columns: 1fr; }
   .fab { display: inline-flex; align-items: center; }
   .footer { padding-bottom: 88px; }
@@ -129,5 +148,6 @@ p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .glasses, .marquee__track { animation: none; }
+  .product__media svg { transition: none; }
   .btn { transition: none; }
 }
