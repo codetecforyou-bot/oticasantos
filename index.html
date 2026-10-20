@@ -6,7 +6,7 @@
   <title>Óticas Popular Santos | Seu óculos em 1 hora</title>
   <meta name="description" content="Óticas Popular Santos: traga sua receita, escolha a armação e saia usando seu óculos em 1 hora.">
   <meta name="theme-color" content="#D02D26">
-  <link rel="icon" href="assets/logo.png">
+  <link rel="icon" href="assets/logo-144.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
@@ -25,7 +25,7 @@
 
   <header class="header">
     <a class="brand" href="#topo" aria-label="Óticas Popular Santos, início">
-      <img src="assets/logo.png" width="56" height="56" alt="">
+      <img src="assets/logo-144.png" width="56" height="56" alt="">
       <span class="brand__name">Óticas Popular <b>Santos</b></span>
     </a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="nav">Menu</button>
@@ -39,11 +39,11 @@
   </header>
 
   <main id="conteudo">
-    <section class="hero" id="topo">
+    <section class="hero" id="topo" data-hide-fab>
       <div class="hero__media reveal">
         <img class="hero__photo" src="assets/hero.jpg"
-             srcset="assets/hero.jpg 1536w, assets/hero-2304.jpg 2304w, assets/hero-3072.jpg 3072w"
-             sizes="(max-width: 860px) 150vw, 58vw" width="1536" height="1024" fetchpriority="high"
+             srcset="assets/hero-768.jpg 768w, assets/hero-1200.jpg 1200w, assets/hero.jpg 1536w, assets/hero-2304.jpg 2304w, assets/hero-3072.jpg 3072w"
+             sizes="(max-width: 860px) 120vw, 56vw" width="1536" height="1024" fetchpriority="high"
              alt="Mãos segurando armações das marcas Ray-Ban, Cacharel, Cavalera, Ana Hickmann Eyewear e Unita">
       </div>
       <div class="hero__copy">
@@ -92,7 +92,7 @@
       <p class="note">O prazo de 1 hora depende do tipo de lente. Consulte as condições na loja.</p>
     </section>
 
-    <section class="section section--yellow" id="servicos">
+    <section class="section section--yellow" id="servicos" data-hide-fab>
       <header class="section__head">
         <h2>Problemas com seu óculos? <span class="red">A gente resolve.</span></h2>
       </header>
@@ -105,7 +105,7 @@
       <a class="btn btn--big" data-wa href="#loja">Falar no WhatsApp</a>
     </section>
 
-    <section class="section" id="armacoes">
+    <section class="section" id="armacoes" data-hide-fab>
       <header class="section__head">
         <h2>Armações de grau e lentes.</h2>
       </header>
@@ -123,7 +123,8 @@
 
     <section class="ambiente" id="ambiente">
       <figure class="ambiente__photo reveal">
-        <img src="assets/loja.jpg" width="1116" height="1409" loading="lazy"
+        <img src="assets/loja.jpg" srcset="assets/loja-720.jpg 720w, assets/loja.jpg 1116w" sizes="(max-width: 860px) 100vw, 520px"
+             width="1116" height="1409" loading="lazy" decoding="async"
              alt="Interior da Óticas Popular Santos, com expositores de armações, mesas vermelhas e cadeiras amarelas">
       </figure>
       <div class="ambiente__copy">
@@ -133,7 +134,7 @@
       </div>
     </section>
 
-    <section class="section faq" id="duvidas">
+    <section class="section faq" id="duvidas" data-hide-fab>
       <header class="section__head">
         <h2>Perguntas que a gente mais ouve.</h2>
       </header>
@@ -171,7 +172,7 @@
     </section>
   </main>
 
-  <footer class="footer" id="loja">
+  <footer class="footer" id="loja" data-hide-fab>
     <div class="footer__main">      <header class="section__head">
         <h2>Passe na loja ou chame no WhatsApp.</h2>
       </header>
@@ -189,12 +190,12 @@
       </div>
     </div>
     <div class="footer__bar">
-      <img src="assets/logo.png" width="48" height="48" alt="">
+      <img src="assets/logo-144.png" width="48" height="48" alt="">
       <p>© <span id="year">2026</span> Óticas Popular Santos · Seu óculos em 1 hora</p>
     </div>
   </footer>
 
-  <a class="fab" data-wa href="#loja" aria-label="Chamar no WhatsApp">WhatsApp</a>
+  <a class="fab is-hidden" data-wa href="#loja" aria-label="Chamar no WhatsApp"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
   <script src="script.js"></script>
 </body>
 </html>

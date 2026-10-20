@@ -12,17 +12,39 @@ document.querySelectorAll("[data-wa]").forEach((a) => setWhatsApp(a));
 
 const menuBtn = document.querySelector(".menu-btn");
 const nav = document.getElementById("nav");
+const fab = document.querySelector(".fab");
 
 function setMenu(open) {
   nav.classList.toggle("is-open", open);
   menuBtn.setAttribute("aria-expanded", String(open));
+  updateFab();
 }
 
 menuBtn.addEventListener("click", () => setMenu(menuBtn.getAttribute("aria-expanded") !== "true"));
 nav.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+document.addEventListener("click", (e) => {
+  if (nav.classList.contains("is-open") && !e.target.closest(".header")) setMenu(false);
+});
 document.addEventListener("keydown", (e) => {
   if (e.key === "Escape" && nav.classList.contains("is-open")) { setMenu(false); menuBtn.focus(); }
 });
+window.matchMedia("(min-width: 1021px)").addEventListener("change", (e) => { if (e.matches) setMenu(false); });
+
+/* O botão flutuante some onde já existe um botão de WhatsApp (hero, serviços, catálogo, rodapé)
+   e enquanto o menu está aberto, para não cobrir conteúdo. */
+const fabBlockers = new Set();
+function updateFab() {
+  fab.classList.toggle("is-hidden", fabBlockers.size > 0 || nav.classList.contains("is-open"));
+}
+if ("IntersectionObserver" in window) {
+  const fabIo = new IntersectionObserver((entries) => {
+    entries.forEach((e) => (e.isIntersecting ? fabBlockers.add(e.target) : fabBlockers.delete(e.target)));
+    updateFab();
+  }, { rootMargin: "-10% 0px -10% 0px" });
+  document.querySelectorAll("[data-hide-fab]").forEach((el) => fabIo.observe(el));
+} else {
+  updateFab();
+}
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
