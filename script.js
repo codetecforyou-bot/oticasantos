@@ -2,8 +2,61 @@
 const WHATSAPP_NUMBER = "5551982800889";
 const WHATSAPP_MESSAGE = "Olá! Vim pelo site da Óticas Popular Santos e quero saber mais.";
 
+/* ---------- Origem do visitante ----------
+   Descobre de onde a pessoa veio e acrescenta "(Origem: ...)" à mensagem do WhatsApp,
+   para a loja saber o que trouxe cada contato. Guarda só o nome da origem, nada pessoal.
+   Prioridade: links com UTM > anúncios (gclid, fbclid, ttclid) > navegador do Instagram,
+   Facebook ou TikTok > site de onde veio (referrer). Sem origem conhecida, não acrescenta nada. */
+const ORIGIN_KEY = "origem";
+const REFERRERS = [
+  [/(^|\.)instagram\.com$/, "instagram"],
+  [/(^|\.)(facebook|fb)\.com$/, "facebook"],
+  [/(^|\.)google\./, "google / busca"],
+  [/(^|\.)bing\.com$/, "bing / busca"],
+  [/(^|\.)(whatsapp\.com|wa\.me)$/, "whatsapp"],
+  [/(^|\.)tiktok\.com$/, "tiktok"],
+  [/(^|\.)(youtube\.com|youtu\.be)$/, "youtube"],
+  [/^t\.co$|(^|\.)(twitter|x)\.com$/, "x"],
+];
+const cleanTag = (s) => (s || "").toLowerCase().replace(/[^a-z0-9 _.\-]/g, "").trim().slice(0, 30);
+
+function detectOrigin() {
+  const q = new URLSearchParams(location.search);
+  const utm = ["utm_source", "utm_medium", "utm_campaign"].map((k) => cleanTag(q.get(k)));
+  if (utm[0]) return utm.filter(Boolean).join(" / ");
+  if (q.has("gclid")) return "google / anuncio";
+  if (q.has("fbclid")) return "facebook ou instagram / anuncio";
+  if (q.has("ttclid")) return "tiktok / anuncio";
+  const ua = navigator.userAgent;
+  if (/Instagram/i.test(ua)) return "instagram";
+  if (/FBAN|FBAV/i.test(ua)) return "facebook";
+  if (/TikTok|musical_ly|BytedanceWebview/i.test(ua)) return "tiktok";
+  if (document.referrer) {
+    try {
+      const host = new URL(document.referrer).hostname;
+      if (host && host !== location.hostname) {
+        const known = REFERRERS.find(([re]) => re.test(host));
+        return known ? known[1] : cleanTag(host.replace(/^www\./, ""));
+      }
+    } catch {}
+  }
+  return "direto";
+}
+
+function getOrigin() {
+  let saved = null;
+  try { saved = sessionStorage.getItem(ORIGIN_KEY); } catch {}
+  const trazParametro = /[?&](utm_source|gclid|fbclid|ttclid)=/.test(location.search);
+  if (saved && !trazParametro) return saved;
+  const origin = detectOrigin();
+  try { sessionStorage.setItem(ORIGIN_KEY, origin); } catch {}
+  return origin;
+}
+const ORIGIN = getOrigin();
+const withOrigin = (message) => (ORIGIN && ORIGIN !== "direto" ? `${message}\n(Origem: ${ORIGIN})` : message);
+
 function waUrl(message = WHATSAPP_MESSAGE) {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(withOrigin(message))}`;
 }
 function setWhatsApp(a, message = WHATSAPP_MESSAGE) {
   if (!WHATSAPP_NUMBER) return;
